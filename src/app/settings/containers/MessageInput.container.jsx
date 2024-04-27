@@ -4,7 +4,7 @@ import SettingsContext from "../settings.context";
 
 function MessageInputContainer() {
   const { updateMessage, settingsType } = useContext(SettingsContext);
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(settingsType?.data?.data?.message || "");
 
   const onSave = () => {
     updateMessage(value, settingsType?.data?.id);

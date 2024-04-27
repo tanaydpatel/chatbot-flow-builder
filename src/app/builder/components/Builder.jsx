@@ -11,11 +11,13 @@ function Builder({
   onNodeClick,
   onConnect,
   nodeTypes,
+  edgeTypes,
 }) {
   return (
     <>
       <AddNodeButton />
       <ReactFlow
+        maxZoom={1}
         nodes={nodes}
         onNodesChange={onNodesChange}
         edges={edges}
@@ -24,6 +26,7 @@ function Builder({
         onNodeClick={onNodeClick}
         onConnect={onConnect}
         nodeTypes={nodeTypes}
+        edgeTypes={edgeTypes}
         fitView
       >
         <Background />

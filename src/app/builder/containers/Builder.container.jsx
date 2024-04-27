@@ -7,6 +7,11 @@ import { ADD_NODE, MESSAGE_INPUT, NODE_TYPES } from "../../../constants";
 import { addEdge, applyEdgeChanges, applyNodeChanges } from "reactflow";
 import MessageNode from "../../nodes/components/MessageNode";
 import SourceNode from "../../nodes/components/SourceNode";
+import CustomEdge from "../components/CustomEdge";
+
+const edgeTypes = {
+  "custom-edge": CustomEdge,
+};
 
 function BuilderContainer() {
   const [nodes, setNodes] = useState([
@@ -38,7 +43,8 @@ function BuilderContainer() {
   }, []);
 
   const onConnect = useCallback(
-    (params) => setEdges((eds) => addEdge(params, eds)),
+    (params) =>
+      setEdges((eds) => addEdge({ ...params, type: "custom-edge" }, eds)),
     []
   );
 
@@ -83,6 +89,7 @@ function BuilderContainer() {
         onNodeClick={onNodeClick}
         onConnect={onConnect}
         nodeTypes={nodeTypes}
+        edgeTypes={edgeTypes}
       />
       <SettingsContainer />
     </SettingsContext.Provider>
