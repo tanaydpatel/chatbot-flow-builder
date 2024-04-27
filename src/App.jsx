@@ -1,17 +1,13 @@
 import React from "react";
 
-import { AppShell, Group, Burger, Title, Flex, Box } from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
+import { AppShell, Group, Title, Flex, Box } from "@mantine/core";
 import BuilderContainer from "./app/builder/containers/Builder.container";
 
 function App() {
-  const [opened, { toggle }] = useDisclosure();
-
   return (
     <AppShell header={{ height: { base: 70 } }} padding="md">
       <AppShell.Header>
         <Group h="100%" px="md">
-          <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
           <Flex
             justify="space-between"
             w={{ xs: "auto", sm: "100%" }}
