@@ -41,18 +41,15 @@ function BuilderContainer() {
   const onEdgesChange = useCallback((changes) => {
     setEdges((eds) => applyEdgeChanges(changes, eds));
   }, []);
-
   const onConnect = useCallback(
     (params) =>
       setEdges((eds) => addEdge({ ...params, type: "custom-edge" }, eds)),
     []
   );
-
   const onNodeClick = (event, node) => {
     handleSettingsType(MESSAGE_INPUT, node);
     // You can access node properties like its id, data, position, etc.
   };
-
   const nodeTypes = useMemo(
     () => ({ message: MessageNode, source: SourceNode }),
     []
@@ -60,6 +57,7 @@ function BuilderContainer() {
 
   const addNode = (node) => {
     setNodes([...nodes, node]);
+    handleSettingsType(false);
   };
 
   const updateMessage = (message, nodeId) => {
@@ -70,6 +68,7 @@ function BuilderContainer() {
       return node;
     });
     setNodes([...updatedNodes]);
+    handleSettingsType(false);
   };
 
   return (

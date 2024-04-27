@@ -11,6 +11,7 @@ function MessageNode({ data }) {
           label={data?.message || null}
           multiline
           disabled={!data?.message}
+          maw={500}
         >
           {data?.message ? (
             <Text
