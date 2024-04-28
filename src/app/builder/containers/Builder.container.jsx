@@ -50,9 +50,11 @@ function BuilderContainer() {
   const addNode = (node) => {
     setNodes([...nodes, node]);
     handleSettingsType(false);
+    setError();
   };
   const deleteNode = (id) => {
     setNodes([...nodes?.filter((n) => n.id !== id)]);
+    setError();
   };
 
   // builder methods
@@ -65,6 +67,7 @@ function BuilderContainer() {
     setEdges((eds) => applyEdgeChanges(changes, eds));
   }, []);
   const onConnect = useCallback((params) => {
+    setError();
     return setEdges((eds) => {
       for (let i = 0; i < eds.length; i++) {
         console.log("second", params, eds[i].source);
