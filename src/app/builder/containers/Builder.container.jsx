@@ -13,15 +13,17 @@ const edgeTypes = {
   "custom-edge": CustomEdge,
 };
 
+const initialNode = [
+  {
+    id: "source",
+    data: { label: "Starting node" },
+    position: { x: 0, y: 0 },
+    type: "source",
+  },
+];
+
 function BuilderContainer() {
-  const [nodes, setNodes] = useState([
-    {
-      id: "source",
-      data: { label: "Hello" },
-      position: { x: 0, y: 0 },
-      type: "source",
-    },
-  ]);
+  const [nodes, setNodes] = useState(initialNode);
   const [edges, setEdges] = useState([]);
   const [settingsType, setSettingsType] = useState(null);
 
