@@ -21,12 +21,7 @@ function App() {
         </Group>
       </AppShell.Header>
       <AppShell.Main>
-        <Box
-          h={"80vh"}
-          w={"100%"}
-          style={{ border: "1px solid black" }}
-          pos="relative"
-        >
+        <Box h={"80vh"} w={"100%"} pos="relative">
           <BuilderContainer />
         </Box>
       </AppShell.Main>

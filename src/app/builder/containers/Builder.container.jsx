@@ -8,7 +8,7 @@ import { addEdge, applyEdgeChanges, applyNodeChanges } from "reactflow";
 import MessageNode from "../../nodes/components/MessageNode";
 import SourceNode from "../../nodes/components/SourceNode";
 import CustomEdge from "../components/CustomEdge";
-import { Button } from "@mantine/core";
+import { Button, Center, Flex, Text } from "@mantine/core";
 
 const edgeTypes = {
   "custom-edge": CustomEdge,
@@ -27,6 +27,7 @@ function BuilderContainer() {
   const [nodes, setNodes] = useState(initialNode);
   const [edges, setEdges] = useState([]);
   const [settingsType, setSettingsType] = useState(null);
+  const [error, setError] = useState(null);
 
   // context methods
   const handleSettingsType = (panel, data) => {
@@ -85,7 +86,28 @@ function BuilderContainer() {
 
   // Save flow
   const onSave = () => {
-    console.log(edges, nodes);
+    const otherThanSourceNodes = {};
+    nodes.forEach((n) => {
+      if (n.id !== "source") {
+        otherThanSourceNodes[n.id] = 1;
+      }
+    });
+    edges.forEach((ed) => {
+      otherThanSourceNodes[ed.target] = 0;
+    });
+
+    let notConnectedNodes = 0;
+    Object.values(otherThanSourceNodes).forEach((num) => {
+      notConnectedNodes += num;
+    });
+
+    if (notConnectedNodes) {
+      setError(
+        `${notConnectedNodes} node${
+          notConnectedNodes > 1 ? "s are" : " is"
+        } not connected!`
+      );
+    }
   };
 
   return (
@@ -98,7 +120,12 @@ function BuilderContainer() {
         updateMessage,
       }}
     >
-      <Button onClick={onSave}>Save flow</Button>
+      <Button onClick={onSave} variant="outline">
+        Save flow
+      </Button>
+      <Center>
+        <Text c="red">{error}</Text>
+      </Center>
       <Builder
         edges={edges}
         nodes={nodes}
