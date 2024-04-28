@@ -1,5 +1,13 @@
 # Chatbot flow builder
 
+## Deployment
+
+https://tanaypatel-chatbot-flow-builder.vercel.app/
+
+## Github
+
+https://tanaypatel-chatbot-flow-builder.vercel.app/
+
 ## Overview:
 
 We’ll build a simple Chatbot flow builder using React and try to make the code extensible to easily add new features.
