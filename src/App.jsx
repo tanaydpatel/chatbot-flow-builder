@@ -1,7 +1,8 @@
 import React from "react";
 
-import { AppShell, Group, Title, Flex, Box } from "@mantine/core";
+import { AppShell, Group, Title, Flex, Box, Anchor } from "@mantine/core";
 import BuilderContainer from "./app/builder/containers/Builder.container";
+import { RiGithubFill, RiUser3Line } from "react-icons/ri";
 
 function App() {
   return (
@@ -17,6 +18,22 @@ function App() {
               {" "}
               Chatbot flow builder
             </Title>
+            <div>
+              <Anchor
+                mr="lg"
+                target="_blank"
+                href="https://github.com/tanaydpatel/chatbot-flow-builder"
+              >
+                <RiGithubFill size="25px" />
+              </Anchor>
+              <Anchor
+                mr="lg"
+                target="_blank"
+                href="https://www.tanaypatel.dev/"
+              >
+                <RiUser3Line size="25px" />
+              </Anchor>
+            </div>
           </Flex>
         </Group>
       </AppShell.Header>
