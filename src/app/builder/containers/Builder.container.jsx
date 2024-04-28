@@ -3,12 +3,12 @@ import React, { useCallback, useMemo, useState } from "react";
 import Builder from "../components/Builder";
 import SettingsContainer from "../../settings/containers/Settings.container";
 import SettingsContext from "../../settings/settings.context";
-import { ADD_NODE, MESSAGE_INPUT, NODE_TYPES } from "../../../constants";
+import { ADD_NODE, MESSAGE_INPUT } from "../../../constants";
 import { addEdge, applyEdgeChanges, applyNodeChanges } from "reactflow";
 import MessageNode from "../../nodes/components/MessageNode";
 import SourceNode from "../../nodes/components/SourceNode";
 import CustomEdge from "../components/CustomEdge";
-import { Button, Center, Flex, Text } from "@mantine/core";
+import { Button, Center, Text } from "@mantine/core";
 
 const edgeTypes = {
   "custom-edge": CustomEdge,
@@ -27,7 +27,7 @@ function BuilderContainer() {
   const [nodes, setNodes] = useState(initialNode);
   const [edges, setEdges] = useState([]);
   const [settingsType, setSettingsType] = useState(null);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState();
 
   // context methods
   const handleSettingsType = (panel, data) => {
@@ -107,6 +107,8 @@ function BuilderContainer() {
           notConnectedNodes > 1 ? "s are" : " is"
         } not connected!`
       );
+    } else {
+      setError(null);
     }
   };
 
@@ -124,7 +126,11 @@ function BuilderContainer() {
         Save flow
       </Button>
       <Center>
-        <Text c="red">{error}</Text>
+        {error === null ? (
+          <Text c="lime">Saved successfully !</Text>
+        ) : (
+          <Text c="red">{error}</Text>
+        )}
       </Center>
       <Builder
         edges={edges}
