@@ -19,9 +19,10 @@ function AddNodeViewContainer() {
   const onSelectNode = (node) => {
     switch (node.name) {
       case NODE_TYPES.MESSAGE:
+        const id = uuidv4();
         addNode({
-          id: uuidv4(),
-          data: { label: "Send Message" },
+          id,
+          data: { label: "Send Message", id },
           position: { x: 100, y: 100 },
           type: "message",
         });

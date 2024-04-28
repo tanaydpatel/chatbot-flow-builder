@@ -3,7 +3,7 @@ import React from "react";
 
 function NodeCard({ title, children }) {
   return (
-    <Card withBorder shadow="xs" maw={300}>
+    <Card withBorder shadow="xs" maw={300} pos="relative">
       <Card.Section bg="lime" px="lg" py="4px">
         <Text size="xs" fw="600">
           {title}

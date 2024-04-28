@@ -1,12 +1,31 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Handle, Position } from "reactflow";
+
 import NodeCard from "./NodeCard";
-import { Text, Tooltip } from "@mantine/core";
+import { ActionIcon, Text, Tooltip } from "@mantine/core";
+import SettingsContext from "../../settings/settings.context";
+import { RiDeleteBin2Line } from "react-icons/ri";
 
 function MessageNode({ data }) {
+  const { deleteNode } = useContext(SettingsContext);
+
   return (
     <>
       <NodeCard title="Send message">
+        <ActionIcon
+          color="red"
+          variant="transparent"
+          pos="absolute"
+          top={0}
+          right={0}
+          style={{ zIndex: 5 }}
+          onClick={(e) => {
+            e.stopPropagation();
+            deleteNode(data?.id);
+          }}
+        >
+          <RiDeleteBin2Line />
+        </ActionIcon>
         <Tooltip
           label={data?.message || null}
           multiline

@@ -13,7 +13,7 @@ function App() {
             w={{ xs: "auto", sm: "100%" }}
             align="center"
           >
-            <Title order={1} size={28} c="teal">
+            <Title order={1} size={28} c="lime">
               {" "}
               Chatbot flow builder
             </Title>
